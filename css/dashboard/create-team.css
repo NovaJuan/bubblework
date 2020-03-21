@@ -1,0 +1,20 @@
+.members-list {
+  list-style: none;
+  border: 1px solid #ccc;
+  border-top: none;
+  padding: 0 1rem;
+  display: none;
+}
+
+.members-list li {
+  padding: 1rem 0;
+}
+
+.members-list li:not(:first-child) {
+  border-top: 1px solid #ccc;
+}
+
+.members-list.show {
+  display: block;
+}
+/*# sourceMappingURL=create-team.css.map */

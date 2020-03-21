@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fastcinating</title>
+  <!-- BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
+
+  <!-- CUSTOM CSS -->
+  <link rel="stylesheet" href="../css/dashboard/create-team.css">
+</head>
+
+<body style="background-color: #ccc">
+  <div class="navbar navbar-expand-lg navbar-dark bg-primary py-1">
+    <h2 class="mb-0 navbar-brand">Fastcinating</h2>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      Menu <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Notifications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Offices</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pricing.html">Pricing</a>
+        </li>
+        <li class="nav-item d-flex align-items-center ml-1">
+          <a class=" btn btn-danger btn-sm" href="#">Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <h2 class="navbar-brand mb-0">
+      Office 1
+    </h2>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav2"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      Options <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/">Tasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/newTask.html">New Task</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/office.html">Office Management</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-danger" href="#">Leave Office</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 m-auto">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title text-primary">Create Team in office one</h2>
+            </div>
+            <div class="card-body">
+              <form action="" id="create-team-form">
+                <div class="form-group">
+                  <label for="name">Team Name</label>
+                  <input type="text" required class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group">
+                  <label for="name">Manager</label>
+                  <input type="text" class="form-control" id="manager">
+                  <ul class="members-list">
+                    <li data-id="1">
+                      John Doe <span class="text-primary">CEO (Leader)</span>
+                    </li>
+                    <li data-id="2">
+                      Jessica Smith <span class="text-primary">Designer (Manager)</span>
+                    </li>
+                    <li data-id="3">
+                      Charlie Simpson <span class="text-primary">Designer (Worker)</span>
+                    </li>
+                  </ul>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Create Team</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOTSTRAP JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+
+  <!-- CUSTOM JS -->
+
+</body>
+
+</html>

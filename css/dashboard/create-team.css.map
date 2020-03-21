@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACZ,UAAU,EAAE,IAAI;EAChB,MAAM,EAAE,cAAc;EACtB,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,MAAM;EACf,OAAO,EAAE,IAAI;CASd;;AAdD,AAOE,aAPW,CAOX,EAAE,CAAC;EACD,OAAO,EAAE,MAAM;CAChB;;AATH,AAWE,aAXW,CAWX,EAAE,AAAA,IAAK,CAAA,YAAY,EAAE;EACnB,UAAU,EAAE,cAAc;CAC3B;;AAGH,AAAA,aAAa,AAAA,KAAK,CAAC;EACjB,OAAO,EAAE,KAAK;CACf",
+    "sources": [
+        "create-team.scss"
+    ],
+    "names": [],
+    "file": "create-team.css"
+}

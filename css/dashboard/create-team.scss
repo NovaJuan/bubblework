@@ -1,0 +1,19 @@
+.members-list {
+  list-style: none;
+  border: 1px solid #ccc;
+  border-top: none;
+  padding: 0 1rem;
+  display: none;
+
+  li {
+    padding: 1rem 0;
+  }
+
+  li:not(:first-child) {
+    border-top: 1px solid #ccc;
+  }
+}
+
+.members-list.show {
+  display: block;
+}
