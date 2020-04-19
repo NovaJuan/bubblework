@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fastcinating</title>
+  <!-- BOOTSTRAP CSS -->
+  <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
+
+  <!-- CUSTOM CSS -->
+  <link rel="stylesheet" href="../css/dashboard/main.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="navbar navbar-expand-lg navbar-dark bg-primary py-1">
+      <h2 class="mb-0 navbar-brand">Fastcinating</h2>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        Menu <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Invitations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Offices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pricing.html">Pricing</a>
+          </li>
+          <li class="nav-item d-flex align-items-center ml-1">
+            <a class=" btn btn-danger btn-sm" href="#">Log Out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <h2 class="navbar-brand mb-0">Office 1</h2>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav2"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        Options <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav2">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard/">Tasks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard/newTask.html">New Task</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard/office.html">Office Options</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-danger" href="#">Leave Office</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="row py-4">
+        <div class="col-lg-7 m-auto">
+          <div class="card">
+            <div class="card-header">
+              <h1 class="text-primary">Office Management</h1>
+              <a href="" class="btn btn-primary btn-sm">Edit Office</a>
+              <a href="" class="btn btn-danger btn-sm">Close Office</a>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-8">
+                  <p><strong>Name:</strong> Office 1</p>
+                  <p><strong>Description:</strong> Office Description</p>
+                  <p><strong>Number of Members:</strong> 5</p>
+                  <p><strong>Number of Teams:</strong> 2</p>
+                  <p><strong>Office Leader:</strong> John Doe</p>
+                </div>
+                <div class="col-sm-4">
+                  <img
+                    src="https://1eomrl2yw3162c9bhn16xpcm-wpengine.netdna-ssl.com/wp-content/uploads/sites/8/2016/06/1349378871-56591.jpg"
+                    alt="placeholder" class="img-fluid">
+                </div>
+              </div>
+
+              <hr>
+
+              <h3 class="text-primary">Members <span class="text-muted">3/5</span></h3>
+              <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <p class="mb-0 my-1">
+                    John Doe <span class="text-primary">CEO (Leader)</span>
+                  </p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <p class="mb-0 my-1">
+                    Jessica Smith <span class="text-primary">Designer (Manager)</span>
+                  </p>
+                  <span>
+                    <button class="btn btn-primary btn-sm mr-2 open-modal" data-action="position" data-id="2"
+                      data-name="Jessica Smith" data-position-level="Manager" data-position="Designer">Change
+                      Position</button>
+                    <button class="btn btn-danger btn-sm open-modal" data-action="delete" data-id="2"
+                      data-name="Jessica Smith">Fire</a>
+                  </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <p class="mb-0 my-1">
+                    Charlie Simpson <span class="text-primary">Designer (Worker)</span>
+                  </p>
+                  <span>
+                    <button class="btn btn-primary btn-sm mr-2 open-modal" data-action="position" data-id="3"
+                      data-name="Charlie Simpson" data-position-level="Worker" data-position="Designer">Change
+                      Position</button>
+                    <button class="btn btn-danger btn-sm open-modal" data-action="delete" data-id="3"
+                      data-name="Charlie Simpson">Fire</button>
+                  </span>
+                </li>
+                <li class="list-group-item text-secondary">
+                  <p class="mb-0 my-1">EMPTY <a href="#" class="text-primary">Add Member</a></p>
+                </li>
+                <li class="list-group-item text-secondary">
+                  <p class="mb-0 my-1">EMPTY <a href="#" class="text-primary">Add Member</a></p>
+                </li>
+              </ul>
+              <a href="#" class="btn btn-primary btn-sm">Add Member</a>
+              <a href="#" class="btn btn-success btn-sm">Buy More Spaces</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-container" style="position:absolute;width:100%;height: 100%;background-color: rgba(0,0,0,.5);"
+    class="modal fade close-modal"></div>
+
+  <!-- BOOTSTRAP JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+
+  <!-- CUSTOM JS -->
+  <script src="../js/dashboard-office.js"></script>
+</body>
+
+</html>
