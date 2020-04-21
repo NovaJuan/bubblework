@@ -1,0 +1,46 @@
+{
+	"name": "bubblework",
+	"version": "1.0.0",
+	"description": "Create your virtual office - SaaS platform",
+	"main": "index.js",
+	"scripts": {
+		"start": "cross-env NODE_ENV=production node server/index.js",
+		"dev": "cross-env NODE_ENV=development nodemon server/index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/NovaJuan/bubblework.git"
+	},
+	"keywords": [
+		"saas",
+		"office",
+		"work"
+	],
+	"author": "Juan Romero",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/NovaJuan/bubblework/issues"
+	},
+	"homepage": "https://github.com/NovaJuan/bubblework#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"colors": "^1.4.0",
+		"compression": "^1.7.4",
+		"cors": "^2.8.5",
+		"cross-env": "^7.0.2",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-mongo-sanitize": "^2.0.0",
+		"express-rate-limit": "^5.1.1",
+		"helmet": "^3.22.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.9.9",
+		"morgan": "^1.10.0",
+		"shortid": "^2.2.15",
+		"xss-clean": "^0.1.1"
+	},
+	"devDependencies": {
+		"jest": "^25.3.0",
+		"nodemon": "^2.0.3"
+	}
+}
