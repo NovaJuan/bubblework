@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 const { genSalt, hash, compare } = require('bcryptjs');
 const shortid = require('../utils/shortid');
-const jwt = require('jsonwebtoken');
 
 const UserSchema = new mongoose.Schema({
 	shortid: {
@@ -43,7 +43,7 @@ const UserSchema = new mongoose.Schema({
 	role: {
 		type: String,
 		enum: ['user', 'admin'],
-		default: 'admin',
+		default: 'user',
 	},
 	created_at: {
 		type: Date,
@@ -69,11 +69,11 @@ UserSchema.pre('save', async function (next) {
 });
 
 UserSchema.methods.verifyPassword = async function (inputPass) {
-	return compare(inputPass, this.password);
+	return await compare(inputPass, this.password);
 };
 
 UserSchema.methods.getAuthToken = function () {
-	return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+	return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
 		expiresIn: process.env.TOKEN_EXP_DAYS,
 	});
 };
