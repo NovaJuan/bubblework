@@ -49,3 +49,22 @@ exports.login = asyncHandler(async (req, res, next) => {
 		token: user.getAuthToken(),
 	});
 });
+
+exports.info = asyncHandler(async (req, res, next) => {
+	res.status(200).json({
+		success: true,
+		data: req.user,
+	});
+});
+
+exports.update = asyncHandler(async (req, res, next) => {
+	req.user = await User.findByIdAndUpdate(req.user._id, req.body, {
+		runValidators: true,
+		new: true,
+	});
+
+	res.status(201).json({
+		success: true,
+		data: req.user,
+	});
+});

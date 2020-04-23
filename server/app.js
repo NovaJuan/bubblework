@@ -10,6 +10,7 @@ const colors = require('colors');
 const compression = require('compression');
 const helmet = require('helmet');
 const errorHandler = require('./middlewares/errorHandler');
+const decodeTokens = require('./middlewares/decodeTokens');
 
 dotenv.config({
 	path: path.join(__dirname, 'config/config.env'),
@@ -36,6 +37,9 @@ app.use(
 );
 app.use(compression());
 /*-----END OF GLOBAL MIDDLEWARES-----*/
+
+// Decode Tokens Middleware
+app.use(decodeTokens);
 
 /*-----ROUTES-----*/
 app.use('/api/v1', require('./routes/v1'));

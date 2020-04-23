@@ -14,6 +14,11 @@ const errorHandler = (err, req, res, next) => {
 		statusCode = 400;
 	}
 
+	if (err.name === 'CastError') {
+		message = `Resource ID: ${err.value} is invalid`;
+		statusCode = 404;
+	}
+
 	res.status(statusCode || 500).json({
 		success: false,
 		msg: message || 'Something went wrong',
