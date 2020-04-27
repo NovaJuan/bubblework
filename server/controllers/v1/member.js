@@ -13,7 +13,7 @@ exports.add = asyncHandler(async (req, res, next) => {
 	}
 
 	// Create new member
-	await Member.create({
+	const member = await Member.create({
 		user: req.body.user,
 		bubble: req.params.bubble,
 		role: req.body.role,
@@ -21,20 +21,15 @@ exports.add = asyncHandler(async (req, res, next) => {
 
 	res.status(201).json({
 		success: true,
-		data: {},
+		data: member,
 	});
 });
 
 exports.getAll = asyncHandler(async (req, res, next) => {
 	// Check if the user that will be added exists
-	let members;
-
-	// If admin is querying all members id DB (without bubble id parameter)
-	if (req.user.role === 'admin' && !req.params.bubble) {
-		members = await Member.find().populate('user').populate('bubble');
-	} else {
-		members = await Member.find({ bubble: req.params.bubble }).populate('user');
-	}
+	let members = await Member.find({ bubble: req.params.bubble }).populate(
+		'user'
+	);
 
 	res.status(200).json({
 		success: true,
@@ -42,16 +37,43 @@ exports.getAll = asyncHandler(async (req, res, next) => {
 	});
 });
 
-exports.remove = asyncHandler(async (req, res, next) => {
-	if (req.member.role !== 'leader' && req.user.role !== 'admin') {
-		return next(new ErrorResponse('Not allowed to access this route', 401));
-	}
+exports.getOne = asyncHandler(async (req, res, next) => {
 	// Check if the user that will be added exists
+	const member = await Member.findById(req.params.member).populate('user');
+
+	res.status(200).json({
+		success: true,
+		data: member,
+	});
+});
+
+exports.update = asyncHandler(async (req, res, next) => {
+	let member = await Member.findById(req.params.member);
+
+	if (!member) {
+		return next(
+			new ErrorResponse("That member doesn't exists in this bubble", 404)
+		);
+	}
+
+	member = await Member.findByIdAndUpdate(
+		req.params.member,
+		{ role: req.body.role },
+		{ runValidators: true, new: true }
+	);
+
+	res.status(200).json({
+		success: true,
+		data: member,
+	});
+});
+
+exports.remove = asyncHandler(async (req, res, next) => {
 	const member = await Member.findById(req.params.member);
 
 	if (!member) {
 		return next(
-			new ErrorResponse("That member doesn't exists in this bubble.", 404)
+			new ErrorResponse("That member doesn't exists in this bubble", 404)
 		);
 	}
 

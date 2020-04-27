@@ -22,7 +22,7 @@ module.exports = asyncHandler(async (req, res, next) => {
 		bubble: req.params.bubble,
 	});
 
-	if (!member || member.role !== 'leader') {
+	if (!member) {
 		return next(new ErrorResponse('Not allowed to access this bubble.', 401));
 	}
 
