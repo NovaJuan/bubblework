@@ -22,4 +22,9 @@ TeamSchema.index(
 	{ unique: [true, 'That team already exists.'] }
 );
 
+TeamSchema.pre('remove', async function (next) {
+	await this.model('tasks').deleteMany({ team: this._id });
+	next();
+});
+
 module.exports = mongoose.model('teams', TeamSchema);

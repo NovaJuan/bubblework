@@ -9,16 +9,17 @@ const {
 	remove,
 	update,
 } = require('../../controllers/v1/member');
-const isMember = require('../../middlewares/isMember');
-const onlyLeader = require('../../middlewares/onlyLeader');
+const allowMemberRoles = require('../../middlewares/allowMemberRoles');
+const fetchMember = require('../../middlewares/fetchMember');
 
-router.use(isMember);
+// Checking if exists and fetching member
+router.use('/:member', fetchMember);
 
 router.get('/', getAll);
-
-router.use(onlyLeader);
-router.post('/', add);
 router.get('/:member', getOne);
+
+router.use(allowMemberRoles('leader', 'creator'));
+router.post('/', add);
 router.delete('/:member', remove);
 router.put('/:member', update);
 

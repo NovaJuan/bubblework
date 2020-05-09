@@ -1,11 +1,27 @@
 const asyncHandler = require('../../utils/asyncHandler');
 const ErrorResponse = require('../../utils/ErrorResponse');
-const Bubble = require('../../models/Bubble');
 const Member = require('../../models/Member');
 const User = require('../../models/User');
 
-exports.add = asyncHandler(async (req, res, next) => {
+// @route     GET /api/v1/bubbles/:bubble/members
+// @desc      Get all members from a bubble
+// @access    Private
+exports.getAll = asyncHandler(async (req, res, next) => {
 	// Check if the user that will be added exists
+	let members = await Member.find({ bubble: req.params.bubble }).populate(
+		'user'
+	);
+
+	res.status(200).json({
+		success: true,
+		data: members,
+	});
+});
+
+// @route     POST /api/v1/bubbles/:bubble/members
+// @desc      Add a new member to a bubble
+// @access    Private
+exports.add = asyncHandler(async (req, res, next) => {
 	const user = await User.findById(req.body.user);
 
 	if (!user) {
@@ -25,38 +41,21 @@ exports.add = asyncHandler(async (req, res, next) => {
 	});
 });
 
-exports.getAll = asyncHandler(async (req, res, next) => {
-	// Check if the user that will be added exists
-	let members = await Member.find({ bubble: req.params.bubble }).populate(
-		'user'
-	);
-
-	res.status(200).json({
-		success: true,
-		data: members,
-	});
-});
-
+// @route     GET /api/v1/bubbles/:bubble/members/:member
+// @desc      Get a specific member from a bubble
+// @access    Private
 exports.getOne = asyncHandler(async (req, res, next) => {
-	// Check if the user that will be added exists
-	const member = await Member.findById(req.params.member).populate('user');
-
 	res.status(200).json({
 		success: true,
-		data: member,
+		data: req.f_member,
 	});
 });
 
+// @route     PUT /api/v1/bubbles/:bubble/members/:member
+// @desc      Update a member from a bubble
+// @access    Private
 exports.update = asyncHandler(async (req, res, next) => {
-	let member = await Member.findById(req.params.member);
-
-	if (!member) {
-		return next(
-			new ErrorResponse("That member doesn't exists in this bubble", 404)
-		);
-	}
-
-	member = await Member.findByIdAndUpdate(
+	const member = await Member.findByIdAndUpdate(
 		req.params.member,
 		{ role: req.body.role },
 		{ runValidators: true, new: true }
@@ -68,22 +67,17 @@ exports.update = asyncHandler(async (req, res, next) => {
 	});
 });
 
+// @route     DELETE /api/v1/bubbles/:bubble/members/:member
+// @desc      Remove a member from a bubble
+// @access    Private
 exports.remove = asyncHandler(async (req, res, next) => {
-	const member = await Member.findById(req.params.member);
-
-	if (!member) {
-		return next(
-			new ErrorResponse("That member doesn't exists in this bubble", 404)
-		);
-	}
-
-	if (member.user.equals(req.user._id)) {
+	if (req.f_member.user._id.equals(req.user._id)) {
 		return next(new ErrorResponse('Cannot remove yourself.', 401));
 	}
 
 	if (
-		!req.user._id.equals(req.bubble.creator) &&
-		member.role === 'leader' &&
+		!req.user._id.equals(req.f_bubble.creator) &&
+		req.f_member.role === 'leader' &&
 		req.user.role !== 'admin'
 	) {
 		return next(new ErrorResponse('Only creator can remove leaders.', 401));

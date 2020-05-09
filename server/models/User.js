@@ -78,4 +78,15 @@ UserSchema.methods.getAuthToken = function () {
 	});
 };
 
+UserSchema.pre('remove', async function (next) {
+	await this.model('members').deleteMany({ user: this._id });
+	const bubbles = await this.model('bubbles').find({ creator: this._id });
+
+	for (let i = 0; i < bubbles.length; i++) {
+		await bubbles[i].remove();
+	}
+
+	next();
+});
+
 module.exports = mongoose.model('users', UserSchema);
