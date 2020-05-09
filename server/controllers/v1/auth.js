@@ -2,6 +2,9 @@ const asyncHandler = require('../../utils/asyncHandler');
 const ErrorResponse = require('../../utils/ErrorResponse');
 const User = require('../../models/User');
 
+// @route     POST /api/v1/auth/register
+// @desc      Register user
+// @access    Public
 exports.register = asyncHandler(async (req, res, next) => {
 	if (req.body.role) delete req.body.role;
 
@@ -27,6 +30,9 @@ exports.register = asyncHandler(async (req, res, next) => {
 	});
 });
 
+// @route     POST /api/v1/auth/login
+// @desc      Login user
+// @access    Public
 exports.login = asyncHandler(async (req, res, next) => {
 	if (!req.body.email || !req.body.password) {
 		return next(new ErrorResponse('Missing fields.', 400));
@@ -50,6 +56,9 @@ exports.login = asyncHandler(async (req, res, next) => {
 	});
 });
 
+// @route     GET /api/v1/auth
+// @desc      Get user logged info
+// @access    Private
 exports.info = asyncHandler(async (req, res, next) => {
 	res.status(200).json({
 		success: true,

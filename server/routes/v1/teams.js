@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router({
 	mergeParams: true,
 });
-const isMember = require('../../middlewares/isMember');
-const onlyLeader = require('../../middlewares/onlyLeader');
+const fetchTeam = require('../../middlewares/fetchTeam');
+const allowMemberRoles = require('../../middlewares/allowMemberRoles');
 const {
 	create,
 	getAll,
@@ -12,12 +12,15 @@ const {
 	remove,
 } = require('../../controllers/v1/team');
 
-router.use(isMember);
+// Checking if exists and fetching team
+router.use('/:team', fetchTeam);
 
 router.get('/', getAll);
 router.get('/:team', getOne);
 
-router.use(onlyLeader);
+router.use('/:team/tasks', require('./tasks'));
+
+router.use(allowMemberRoles('creator', 'leader'));
 router.post('/', create);
 router.put('/:team', update);
 router.delete('/:team', remove);

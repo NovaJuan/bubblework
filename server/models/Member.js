@@ -17,7 +17,7 @@ const MemberSchema = new mongoose.Schema({
 	},
 	role: {
 		type: String,
-		enum: ['leader', 'manager', 'worker'],
+		enum: ['leader', 'manager', 'worker', 'creator'],
 		required: [true, 'role needed.'],
 	},
 });
@@ -25,6 +25,14 @@ const MemberSchema = new mongoose.Schema({
 MemberSchema.index(
 	{ bubble: 1, user: 1 },
 	{ unique: [true, 'That user is already added to this bubble.'] }
+);
+
+MemberSchema.index(
+	{ bubble: 1, role: 1 },
+	{
+		unique: [true, 'Only can be one creator per bubble.'],
+		partialFilterExpression: { role: 'creator' },
+	}
 );
 
 module.exports = mongoose.model('members', MemberSchema);

@@ -2,6 +2,21 @@ const asyncHandler = require('../../utils/asyncHandler');
 const ErrorResponse = require('../../utils/ErrorResponse');
 const Team = require('../../models/Team');
 
+// @route     GET /api/v1/bubbles/:bubble/teams
+// @desc      Get all teams from a bubble
+// @access    Private
+exports.getAll = asyncHandler(async (req, res, next) => {
+	const teams = await Team.find({ bubble: req.params.bubble });
+
+	res.status(200).json({
+		success: true,
+		data: teams,
+	});
+});
+
+// @route     POST /api/v1/bubbles/:bubble/teams
+// @desc      Create a team in a bubble
+// @access    Private
 exports.create = asyncHandler(async (req, res, next) => {
 	let team = await Team.findOne({
 		name: req.body.name,
@@ -28,40 +43,21 @@ exports.create = asyncHandler(async (req, res, next) => {
 	});
 });
 
-exports.getAll = asyncHandler(async (req, res, next) => {
-	const teams = await Team.find({ bubble: req.params.bubble });
-
-	res.status(200).json({
-		success: true,
-		data: teams,
-	});
-});
-
+// @route     GET /api/v1/bubbles/:bubble/teams/:team
+// @desc      Get a specific team from a bubble
+// @access    Private
 exports.getOne = asyncHandler(async (req, res, next) => {
-	let team = await Team.findById(req.params.team);
-
-	if (!team) {
-		return next(
-			new ErrorResponse(`That team doesn\'t exists in this bubble.`, 404)
-		);
-	}
-
 	res.status(200).json({
 		success: true,
-		data: team,
+		data: req.f_team,
 	});
 });
 
+// @route     PUT /api/v1/bubbles/:bubble/teams/:team
+// @desc      Update a specific team of a bubble
+// @access    Private
 exports.update = asyncHandler(async (req, res, next) => {
-	let team = await Team.findById(req.params.team);
-
-	if (!team) {
-		return next(
-			new ErrorResponse(`That team doesn\'t exists in this bubble.`, 404)
-		);
-	}
-
-	team = await Team.findByIdAndUpdate(
+	let team = await Team.findByIdAndUpdate(
 		req.params.team,
 		{
 			name: req.body.name,
@@ -75,16 +71,11 @@ exports.update = asyncHandler(async (req, res, next) => {
 	});
 });
 
+// @route     DELETE /api/v1/bubbles/:bubble/teams/:team
+// @desc      Delete a team from a bubble
+// @access    Private
 exports.remove = asyncHandler(async (req, res, next) => {
-	let team = await Team.findById(req.params.team);
-
-	if (!team) {
-		return next(
-			new ErrorResponse(`That team doesn\'t exists in this bubble.`, 404)
-		);
-	}
-
-	team = await Team.findByIdAndDelete(req.params.team);
+	await req.f_team.remove();
 
 	res.status(200).json({
 		success: true,

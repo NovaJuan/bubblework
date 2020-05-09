@@ -10,7 +10,8 @@ const errorHandler = (err, req, res, next) => {
 	}
 
 	if (err.code === 11000) {
-		message = 'Duplicated key value.';
+		const fields = Object.keys(err.keyValue);
+		message = `Resource with that ${fields.join(' and ')} already exists.`;
 		statusCode = 400;
 	}
 
