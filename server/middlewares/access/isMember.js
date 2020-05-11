@@ -1,6 +1,6 @@
-const ErrorResponse = require('../utils/ErrorResponse');
-const asyncHandler = require('../utils/asyncHandler');
-const Member = require('../models/Member');
+const ErrorResponse = require('../../utils/ErrorResponse');
+const asyncHandler = require('../../utils/asyncHandler');
+const Member = require('../../models/Member');
 
 module.exports = asyncHandler(async (req, res, next) => {
 	// If user is admin, then grant access

@@ -10,7 +10,7 @@ const colors = require('colors');
 const compression = require('compression');
 const helmet = require('helmet');
 const errorHandler = require('./middlewares/errorHandler');
-const decodeTokens = require('./middlewares/decodeTokens');
+const decodeTokens = require('./middlewares/user/decodeTokens');
 
 dotenv.config({
 	path: path.join(__dirname, 'config/config.env'),

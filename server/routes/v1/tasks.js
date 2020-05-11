@@ -9,8 +9,8 @@ const {
 	update,
 	remove,
 } = require('../../controllers/v1/task');
-const allowMemberRoles = require('../../middlewares/allowMemberRoles');
-const fetchTask = require('../../middlewares/fetchTask');
+const allowMemberRoles = require('../../middlewares/access/allowMemberRoles');
+const fetchTask = require('../../middlewares/fetch/fetchTask');
 
 // Checking if exists and fetching task
 router.use('/:task', fetchTask);

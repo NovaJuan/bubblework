@@ -1,13 +1,13 @@
 const asyncHandler = require('../../utils/asyncHandler');
 const ErrorResponse = require('../../utils/ErrorResponse');
+const formattedObject = require('../../utils/formattedObject');
 const User = require('../../models/User');
+const stripe = require('../../services/stripe');
 
 // @route     POST /api/v1/auth/register
 // @desc      Register user
 // @access    Public
 exports.register = asyncHandler(async (req, res, next) => {
-	if (req.body.role) delete req.body.role;
-
 	let user = await User.findOne({
 		$or: [{ email: req.body.email }, { username: req.body.username }],
 	});
@@ -22,12 +22,29 @@ exports.register = asyncHandler(async (req, res, next) => {
 		return next(new ErrorResponse("Passwords doesn't match.", 400));
 	}
 
-	user = await User.create(req.body);
-
-	res.status(201).json({
-		success: true,
-		token: user.getAuthToken(),
+	const fields = formattedObject({
+		name: req.body.name,
+		username: req.body.username,
+		email: req.body.email,
+		password: req.body.password,
 	});
+
+	user = await User.create(fields);
+
+	try {
+		const customer = await stripe.customers.create({ user });
+
+		user.set({ stripe_customerid: customer.id });
+		await user.save();
+
+		res.status(201).json({
+			success: true,
+			token: user.getAuthToken(),
+		});
+	} catch (err) {
+		await user.remove();
+		return next(err);
+	}
 });
 
 // @route     POST /api/v1/auth/login
@@ -50,7 +67,7 @@ exports.login = asyncHandler(async (req, res, next) => {
 		return next(new ErrorResponse('Invalid Credentials.', 400));
 	}
 
-	res.status(201).json({
+	res.status(200).json({
 		success: true,
 		token: user.getAuthToken(),
 	});
@@ -66,8 +83,18 @@ exports.info = asyncHandler(async (req, res, next) => {
 	});
 });
 
+// @route     PUT /api/v1/auth
+// @desc      Update user info
+// @access    Private
 exports.update = asyncHandler(async (req, res, next) => {
-	req.user = await User.findByIdAndUpdate(req.user._id, req.body, {
+	const fields = formattedObject({
+		name: req.body.name,
+		username: req.body.username,
+		email: req.body.email,
+		password: req.body.password,
+	});
+
+	req.user = await User.findByIdAndUpdate(req.user._id, fields, {
 		runValidators: true,
 		new: true,
 	});

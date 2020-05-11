@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router({
 	mergeParams: true,
 });
-const fetchTeam = require('../../middlewares/fetchTeam');
-const allowMemberRoles = require('../../middlewares/allowMemberRoles');
+const fetchTeam = require('../../middlewares/fetch/fetchTeam');
+const allowMemberRoles = require('../../middlewares/access/allowMemberRoles');
 const {
 	create,
 	getAll,

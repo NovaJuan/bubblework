@@ -1,5 +1,5 @@
-const asyncHandler = require('../utils/asyncHandler');
-const User = require('../models/User');
+const asyncHandler = require('../../utils/asyncHandler');
+const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 
 module.exports = asyncHandler(async (req, res, next) => {

@@ -45,6 +45,9 @@ const UserSchema = new mongoose.Schema({
 		enum: ['user', 'admin'],
 		default: 'user',
 	},
+	stripe_customerid: {
+		type: String,
+	},
 	created_at: {
 		type: Date,
 		default: Date.now,

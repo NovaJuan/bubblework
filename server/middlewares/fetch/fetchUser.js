@@ -1,6 +1,6 @@
-const ErrorResponse = require('../utils/ErrorResponse');
-const asyncHandler = require('../utils/asyncHandler');
-const User = require('../models/User');
+const ErrorResponse = require('../../utils/ErrorResponse');
+const asyncHandler = require('../../utils/asyncHandler');
+const User = require('../../models/User');
 
 module.exports = asyncHandler(async (req, res, next) => {
 	const user = await User.findById(req.params.user);
