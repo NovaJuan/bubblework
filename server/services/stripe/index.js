@@ -1,4 +1,6 @@
-const plans = require('./plans');
-const subscriptions = require('./subscriptions');
-
-module.exports = { plans, subscriptions };
+module.exports = {
+	plans: require('./plans'),
+	subscriptions: require('./subscriptions'),
+	paymentMethods: require('./paymentMethods'),
+	customers: require('./customers'),
+};

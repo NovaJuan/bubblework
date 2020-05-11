@@ -1,5 +1,5 @@
-const ErrorResponse = require('../utils/ErrorResponse');
-const asyncHandler = require('../utils/asyncHandler');
+const ErrorResponse = require('../../utils/ErrorResponse');
+const asyncHandler = require('../../utils/asyncHandler');
 
 module.exports = (...args) =>
 	asyncHandler(async (req, res, next) => {

@@ -6,9 +6,9 @@ const {
 	update,
 	remove,
 } = require('../../controllers/v1/plan');
-const allowUserRoles = require('../../middlewares/allowUserRoles');
-const onlyAuthenticated = require('../../middlewares/onlyAuthenticated');
-const fetchPlan = require('../../middlewares/fetchPlan');
+const allowUserRoles = require('../../middlewares/access/allowUserRoles');
+const onlyAuthenticated = require('../../middlewares/access/onlyAuthenticated');
+const fetchPlan = require('../../middlewares/fetch/fetchPlan');
 
 const router = Router();
 

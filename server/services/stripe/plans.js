@@ -1,19 +1,17 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const ErrorResponse = require('../../utils/ErrorResponse');
 
-const handlers = {};
-
-handlers.getAll = async () => {
+exports.getAll = async () => {
 	const results = await stripe.plans.list();
 	return results.data;
 };
 
-handlers.getOne = async (id) => {
+exports.getOne = async (id) => {
 	const plan = await stripe.plans.retrieve(id);
 	return plan;
 };
 
-handlers.create = async (plan) => {
+exports.create = async (plan) => {
 	const stripe_plan = await stripe.plans.create({
 		amount: parseInt(plan.price * 100),
 		currency: 'usd',
@@ -31,7 +29,7 @@ handlers.create = async (plan) => {
 	return stripe_plan;
 };
 
-handlers.update = async (id, data) => {
+exports.update = async (id, data) => {
 	let plan = await stripe.plans.retrieve(id);
 
 	let fields = {
@@ -49,10 +47,8 @@ handlers.update = async (id, data) => {
 	return plan;
 };
 
-handlers.delete = async (id) => {
+exports.delete = async (id) => {
 	const confirmation = await stripe.plans.del(id);
 
 	return confirmation;
 };
-
-module.exports = handlers;

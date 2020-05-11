@@ -1,6 +1,6 @@
-const ErrorResponse = require('../utils/ErrorResponse');
-const asyncHandler = require('../utils/asyncHandler');
-const Team = require('../models/Team');
+const ErrorResponse = require('../../utils/ErrorResponse');
+const asyncHandler = require('../../utils/asyncHandler');
+const Team = require('../../models/Team');
 
 module.exports = asyncHandler(async (req, res, next) => {
 	// Check if bubble exists
